@@ -1,0 +1,41 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\%USERNAME%\\.config\\mcp\\servers\\github\\index.js"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    },
+    "puppeteer": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\%USERNAME%\\.config\\mcp\\servers\\puppeteer\\index.js"
+      ]
+    },
+    "brave-search": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\%USERNAME%\\.config\\mcp\\servers\\brave-search\\index.js"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      }
+    },
+    "testsprite": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\%USERNAME%\\.config\\mcp\\servers\\testsprite\\index.js"
+      ]
+    },
+    "shadcn-ui": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-shadcn"
+      ]
+    }
+  }
+}
