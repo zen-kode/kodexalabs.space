@@ -1,0 +1,235 @@
+---
+description: Advanced custom backup and version control system with YOLO versioning, optimized for speed in backup creation, preview, and comparison. Features automated triggers, intelligent prompts, and space-efficient storage with comprehensive rollback capabilities.
+globs: src/**/*.{ts,tsx,js,jsx}, components/**/*.{ts,tsx}, lib/**/*.{ts,tsx}, hooks/**/*.{ts,tsx}, app/**/*.{ts,tsx}, **/*.{json,md,yml,yaml}, *.config.{ts,js,mjs}, package.json, tsconfig.json
+alwaysApply: false
+---
+
+# Advanced Backup & Version Control System
+
+## Core Trigger System
+
+TRIGGER_CONDITIONS="@backup!,@backup,backup-now,save-version"
+TRIGGER_PATTERN="flexible_match"
+TRIGGER_LOCATION="commit_message,command_input,comment_text,file_content"
+TRIGGER_SENSITIVITY="case_insensitive"
+TRIGGER_VALIDATION="immediate_activation"
+PRIORITY_EXECUTION="highest"
+INTERRUPT_SAFE="true"
+
+## Performance Optimization Core
+
+SPEED_OPTIMIZATION="maximum_performance"
+BACKUP_CREATION_TARGET="under_2_seconds"
+PREVIEW_LOAD_TARGET="under_500ms"
+COMPARISON_TARGET="under_1_second"
+ROLLBACK_TARGET="under_3_seconds"
+PARALLEL_PROCESSING="enabled"
+ASYNC_OPERATIONS="non_blocking"
+CACHE_STRATEGY="aggressive_caching"
+
+## Version Management System
+
+VERSION_ID_FORMAT="YOLO_{timestamp}_{hash8}_{counter}"
+VERSION_NAMING="semantic_auto_generation"
+VERSION_METADATA="comprehensive_tracking"
+VERSION_HIERARCHY="tree_structure"
+VERSION_BRANCHING="automatic_branch_detection"
+VERSION_TAGGING="milestone_based"
+VERSION_COMPRESSION="delta_based_storage"
+
+## Space Optimization Strategies
+
+### Strategy 1: Delta-Based Incremental Storage
+DELTA_COMPRESSION="enabled"
+DELTA_ALGORITHM="myers_diff_optimized"
+DELTA_CHAIN_LIMIT="50_versions"
+DELTA_REBUILD_THRESHOLD="every_100_versions"
+BASE_SNAPSHOT_FREQUENCY="every_10_versions"
+COMPRESSION_RATIO_TARGET="80_percent_reduction"
+
+### Strategy 2: Content-Addressable Storage (CAS)
+CONTENT_HASHING="sha256_truncated"
+DEDUPLICATION="file_level_and_block_level"
+SHARED_CONTENT_POOL="global_deduplication"
+CONTENT_INDEXING="hash_based_lookup"
+STORAGE_EFFICIENCY="maximum_deduplication"
+
+### Strategy 3: Smart Compression with Selective Storage
+SELECTIVE_BACKUP="intelligent_file_filtering"
+COMPRESSION_ALGORITHM="zstd_fast_mode"
+EXCLUSION_PATTERNS="node_modules,.next,dist,build,.git"
+INCLUSION_PRIORITY="source_code,config_files,documentation"
+COMPRESSION_LEVEL="adaptive_based_on_file_type"
+
+## Automated Backup Triggers
+
+AUTO_TRIGGER_CONDITIONS="task_milestone,feature_completion,error_detection,time_based"
+TASK_THRESHOLD="6_or_more_features"
+FEATURE_COMPLETION_TRIGGER="enabled"
+ERROR_DETECTION_BACKUP="automatic_on_crash"
+TIME_BASED_BACKUP="every_30_minutes_if_changes"
+CRITICAL_CHANGE_DETECTION="enabled"
+MILESTONE_DETECTION="automatic"
+
+## Intelligent User Prompts
+
+PROMPT_INTELLIGENCE="context_aware"
+PROMPT_FREQUENCY="adaptive_based_on_activity"
+PROMPT_TRIGGERS="critical_changes,long_sessions,before_risky_operations"
+PROMPT_SUPPRESSION="smart_timing"
+PROMPT_PERSONALIZATION="user_behavior_learning"
+PROMPT_URGENCY_LEVELS="low,medium,high,critical"
+
+## Fast Backup Creation Engine
+
+BACKUP_STRATEGY="parallel_file_processing"
+FILE_SCANNING="async_directory_traversal"
+CHANGE_DETECTION="filesystem_watching"
+INCREMENTAL_BACKUP="enabled"
+BACKUP_VALIDATION="checksum_verification"
+BACKUP_INTEGRITY="error_correction_codes"
+BACKUP_ATOMICITY="transaction_based"
+
+## Fast Preview System
+
+PREVIEW_CACHE="memory_resident"
+PREVIEW_INDEXING="full_text_search"
+PREVIEW_RENDERING="lazy_loading"
+PREVIEW_THUMBNAILS="auto_generated"
+PREVIEW_METADATA="rich_information"
+PREVIEW_NAVIGATION="keyboard_shortcuts"
+
+## Efficient Comparison Engine
+
+COMPARISON_ALGORITHM="optimized_myers_diff"
+COMPARISON_GRANULARITY="line_level,word_level,character_level"
+COMPARISON_HIGHLIGHTING="syntax_aware"
+COMPARISON_CONTEXT="configurable_context_lines"
+COMPARISON_PERFORMANCE="streaming_comparison"
+COMPARISON_CACHING="result_memoization"
+
+## Streamlined Rollback System
+
+ROLLBACK_SAFETY="backup_before_rollback"
+ROLLBACK_GRANULARITY="file_level,directory_level,full_project"
+ROLLBACK_VERIFICATION="integrity_checking"
+ROLLBACK_UNDO="rollback_rollback_capability"
+ROLLBACK_PREVIEW="show_changes_before_apply"
+ROLLBACK_CONFIRMATION="smart_confirmation_prompts"
+
+## Error Handling & Debugging
+
+ERROR_HANDLING="comprehensive_error_recovery"
+DEBUG_LOGGING="detailed_operation_logs"
+ERROR_REPORTING="structured_error_messages"
+SELF_HEALING="automatic_corruption_repair"
+DIAGNOSTICS="built_in_health_checks"
+MONITORING="performance_metrics_tracking"
+
+## Automated Version Comments
+
+COMMENT_GENERATION="ai_powered_analysis"
+CHANGE_DETECTION="added_features,removed_features,modified_features"
+COMMENT_STRUCTURE="structured_markdown_format"
+COMMENT_INTELLIGENCE="context_aware_descriptions"
+COMMENT_CATEGORIES="features,bugfixes,refactoring,documentation"
+COMMENT_TEMPLATES="customizable_formats"
+
+## User Visibility & Interface
+
+CURRENT_VERSION_DISPLAY="cli_command,status_bar,dashboard"
+VERSION_HISTORY="interactive_timeline"
+VERSION_SEARCH="full_text_search_in_comments"
+VERSION_FILTERING="by_date,by_author,by_type,by_tags"
+VERSION_STATISTICS="storage_usage,backup_frequency,rollback_history"
+
+## Storage Architecture
+
+STORAGE_LOCATION=".trae-backups/"
+STORAGE_STRUCTURE="hierarchical_organization"
+STORAGE_ENCRYPTION="optional_aes256"
+STORAGE_COMPRESSION="adaptive_compression"
+STORAGE_CLEANUP="automatic_old_version_cleanup"
+STORAGE_LIMITS="configurable_size_limits"
+
+## Integration Points
+
+TASK_LIST_INTEGRATION="bidirectional_sync"
+FEATURE_ANALYSIS_INTEGRATION="backup_on_analysis"
+GIT_INTEGRATION="git_aware_backups"
+IDE_INTEGRATION="seamless_workflow"
+CI_CD_INTEGRATION="deployment_backups"
+
+## Performance Metrics
+
+BACKUP_SPEED_TARGET="1GB_per_second"
+COMPRESSION_RATIO_TARGET="5x_reduction"
+PREVIEW_LOAD_TIME="under_100ms"
+SEARCH_RESPONSE_TIME="under_50ms"
+ROLLBACK_TIME="under_5_seconds"
+MEMORY_USAGE="under_100MB_resident"
+
+## Advanced Features
+
+BRANCH_MANAGEMENT="automatic_feature_branches"
+MERGE_CAPABILITIES="intelligent_merge_resolution"
+CONFLICT_RESOLUTION="ai_assisted_resolution"
+COLLABORATIVE_BACKUPS="team_shared_backups"
+REMOTE_BACKUP="cloud_sync_optional"
+BACKUP_SHARING="version_sharing_capabilities"
+
+## Security & Privacy
+
+ACCESS_CONTROL="user_based_permissions"
+AUDIT_TRAIL="comprehensive_access_logging"
+DATA_SANITIZATION="sensitive_data_filtering"
+ENCRYPTION_AT_REST="optional_encryption"
+SECURE_DELETION="cryptographic_erasure"
+
+## Extensibility
+
+PLUGIN_ARCHITECTURE="extensible_backup_handlers"
+CUSTOM_TRIGGERS="user_defined_backup_conditions"
+CUSTOM_FILTERS="user_defined_file_filters"
+CUSTOM_COMPRESSION="pluggable_compression_algorithms"
+CUSTOM_STORAGE="pluggable_storage_backends"
+
+## Quality Assurance
+
+TESTING_FRAMEWORK="comprehensive_test_suite"
+PERFORMANCE_TESTING="automated_benchmarking"
+STRESS_TESTING="high_load_scenarios"
+RELIABILITY_TESTING="failure_recovery_testing"
+USABILITY_TESTING="user_experience_validation"
+
+## Success Criteria
+
+- Backup creation completes in under 2 seconds for typical projects
+- Preview loading occurs in under 500ms
+- Comparison operations complete in under 1 second
+- Rollback operations complete in under 3 seconds
+- Storage efficiency achieves 80% space reduction
+- Zero data loss with 99.99% reliability
+- Automated triggers work with 100% accuracy
+- User prompts are contextually relevant 95% of the time
+- System operates bug-free with comprehensive error handling
+- Version comments are accurate and helpful 90% of the time
+
+## Implementation Priority
+
+1. Core backup engine with fast creation
+2. Delta-based storage optimization
+3. Fast preview and comparison systems
+4. Automated trigger implementation
+5. Intelligent user prompts
+6. Version comment generation
+7. Advanced features and integrations
+8. Performance optimization and testing
+
+## Activation Guarantee
+
+ACTIVATION_PRIORITY="immediate_response"
+SYSTEM_INTEGRATION="seamless_trae_integration"
+BACKWARD_COMPATIBILITY="existing_workflow_preservation"
+ZERO_DOWNTIME="hot_deployment_capable"
+USER_EXPERIENCE="intuitive_and_fast"

@@ -1,0 +1,196 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+    function isValidUser() {
+      return isAuthenticated() && request.auth.token.email_verified == true;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+             request.auth.token.admin == true;
+    }
+    
+    function hasValidTimestamps() {
+      return request.resource.data.keys().hasAll(['createdAt', 'updatedAt']) &&
+             request.resource.data.createdAt is timestamp &&
+             request.resource.data.updatedAt is timestamp;
+    }
+    
+    function isValidPrompt() {
+      return request.resource.data.keys().hasAll(['title', 'content', 'userId']) &&
+             request.resource.data.title is string &&
+             request.resource.data.content is string &&
+             request.resource.data.userId is string &&
+             request.resource.data.title.size() > 0 &&
+             request.resource.data.content.size() > 0;
+    }
+    
+    function isValidUser() {
+      return request.resource.data.keys().hasAll(['email']) &&
+             request.resource.data.email is string &&
+             request.resource.data.email.size() > 0;
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      // Users can read and write their own profile
+      allow read, write: if isOwner(userId) && isValidUser();
+      
+      // Admins can read all user profiles
+      allow read: if isAdmin();
+      
+      // Validate user data structure on create/update
+      allow create: if isOwner(userId) && 
+                       isValidUser() && 
+                       hasValidTimestamps();
+      
+      allow update: if isOwner(userId) && 
+                       isValidUser() && 
+                       hasValidTimestamps() &&
+                       request.resource.data.createdAt == resource.data.createdAt;
+    }
+    
+    // Prompts collection
+    match /prompts/{promptId} {
+      // Users can read their own prompts and public prompts
+      allow read: if isAuthenticated() && 
+                     (isOwner(resource.data.userId) || 
+                      resource.data.isPublic == true);
+      
+      // Users can create prompts for themselves
+      allow create: if isAuthenticated() && 
+                       isOwner(request.resource.data.userId) &&
+                       isValidPrompt() &&
+                       hasValidTimestamps();
+      
+      // Users can update their own prompts
+      allow update: if isAuthenticated() && 
+                       isOwner(resource.data.userId) &&
+                       isValidPrompt() &&
+                       hasValidTimestamps() &&
+                       request.resource.data.createdAt == resource.data.createdAt &&
+                       request.resource.data.userId == resource.data.userId;
+      
+      // Users can delete their own prompts
+      allow delete: if isAuthenticated() && 
+                       isOwner(resource.data.userId);
+      
+      // Admins can read/write all prompts
+      allow read, write: if isAdmin();
+    }
+    
+    // Tools collection
+    match /tools/{toolId} {
+      // Users can read their own tools and public tools
+      allow read: if isAuthenticated() && 
+                     (isOwner(resource.data.userId) || 
+                      resource.data.isPublic == true);
+      
+      // Users can create tools for themselves
+      allow create: if isAuthenticated() && 
+                       isOwner(request.resource.data.userId) &&
+                       hasValidTimestamps();
+      
+      // Users can update their own tools
+      allow update: if isAuthenticated() && 
+                       isOwner(resource.data.userId) &&
+                       hasValidTimestamps() &&
+                       request.resource.data.createdAt == resource.data.createdAt &&
+                       request.resource.data.userId == resource.data.userId;
+      
+      // Users can delete their own tools
+      allow delete: if isAuthenticated() && 
+                       isOwner(resource.data.userId);
+      
+      // Admins can read/write all tools
+      allow read, write: if isAdmin();
+    }
+    
+    // Categories collection (read-only for users, write for admins)
+    match /categories/{categoryId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+    
+    // Tags collection (read-only for users, write for admins)
+    match /tags/{tagId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin();
+    }
+    
+    // Analytics collection (admin only)
+    match /analytics/{document=**} {
+      allow read, write: if isAdmin();
+    }
+    
+    // System logs (admin only)
+    match /logs/{document=**} {
+      allow read, write: if isAdmin();
+    }
+    
+    // User sessions (users can read/write their own)
+    match /sessions/{sessionId} {
+      allow read, write: if isAuthenticated() && 
+                            isOwner(resource.data.userId);
+    }
+    
+    // Feedback collection
+    match /feedback/{feedbackId} {
+      // Users can create feedback
+      allow create: if isAuthenticated() &&
+                       isOwner(request.resource.data.userId) &&
+                       hasValidTimestamps();
+      
+      // Users can read their own feedback
+      allow read: if isAuthenticated() && 
+                     isOwner(resource.data.userId);
+      
+      // Admins can read all feedback
+      allow read, write: if isAdmin();
+    }
+    
+    // Notifications collection
+    match /notifications/{notificationId} {
+      // Users can read their own notifications
+      allow read: if isAuthenticated() && 
+                     isOwner(resource.data.userId);
+      
+      // Users can update their own notifications (mark as read)
+      allow update: if isAuthenticated() && 
+                       isOwner(resource.data.userId) &&
+                       request.resource.data.keys().hasOnly(['read', 'updatedAt']) &&
+                       request.resource.data.read is bool;
+      
+      // System can create notifications
+      allow create: if isAdmin();
+      
+      // Admins can manage all notifications
+      allow read, write: if isAdmin();
+    }
+    
+    // Rate limiting collection (system use only)
+    match /rate_limits/{document=**} {
+      allow read, write: if isAdmin();
+    }
+    
+    // Security events (system use only)
+    match /security_events/{document=**} {
+      allow read, write: if isAdmin();
+    }
+    
+    // Default deny all other collections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "version": "1.0.0",
+  "name": "Sparks AI Toolkit - Trae IDE Configuration",
+  "description": "Configuration for Trae IDE integration with Sparks project rules and workflows",
+  "project": {
+    "name": "Sparks",
+    "type": "nextjs-ai-toolkit",
+    "framework": "Next.js 15",
+    "language": "TypeScript",
+    "ai_integration": "Firebase Genkit + Google AI"
+  },
+  "rules": {
+    "directory": "./rules",
+    "format": "mdc",
+    "auto_discovery": true,
+    "priority_order": [
+      "666_rule_-_advanced_task_list_orchestrator.mdc",
+      "advanced_backup_system.mdc",
+      "feature_analysis_sync.mdc",
+      "ai_project_health_oracle.mdc",
+      "guide_me.mdc",
+      "smart_backup_with_versioning.mdc",
+      "theme_style_guide.mdc",
+      "uiexpert.mdc",
+      "debug_&_organize_master.mdc",
+      "x2_rule_checker.mdc"
+    ]
+  },
+  "triggers": {
+    "task_orchestrator": {
+      "pattern": "@666",
+      "type": "exact_match",
+      "case_sensitive": false,
+      "immediate_activation": true
+    },
+    "feature_analysis": {
+      "patterns": ["@Feature Analysis", "@FeatureAnalysis", "feature-sync"],
+      "type": "flexible_match",
+      "case_sensitive": false,
+      "immediate_activation": true,
+      "auto_schedule": "every_30_minutes",
+      "silent_operation": true
+    },
+    "backup_system": {
+      "patterns": ["@backup!", "@backup", "backup-now", "save-version"],
+      "type": "flexible_match",
+      "case_sensitive": false,
+      "immediate_activation": true,
+      "priority": "highest",
+      "interrupt_safe": true
+    },
+    "guidance": {
+      "keywords": ["guide me", "help", "lost", "stuck", "direction"],
+      "auto_trigger_on_errors": true
+    },
+    "health_check": {
+      "schedule": "on_project_open",
+      "auto_run": false
+    }
+  },
+  "file_patterns": {
+    "source_code": [
+      "src/**/*.{ts,tsx,js,jsx}",
+      "components/**/*.{ts,tsx}",
+      "lib/**/*.{ts,tsx}",
+      "hooks/**/*.{ts,tsx}",
+      "ai/flows/**/*.ts"
+    ],
+    "sync_files": [
+      "task-list.md",
+      "feature-analysis.md",
+      "apps/frontend/src/task-list.md",
+      "**/task-list.md",
+      "**/feature-analysis.md"
+    ],
+    "sync_state": [
+      ".sync-state.json",
+      "memory-bank/progress.md",
+      "memory-bank/activeContext.md"
+    ],
+    "configuration": [
+      "*.config.{ts,js,mjs}",
+      "package.json",
+      "tsconfig.json",
+      "tailwind.config.ts"
+    ],
+    "documentation": [
+      "docs/**/*.md",
+      "README.md",
+      "*.md"
+    ],
+    "task_management": [
+      "task-list.md",
+      "**/task-list.md",
+      "memory-bank/**/*.md"
+    ]
+  },
+  "ai_context": {
+    "project_type": "AI Prompt Engineering Toolkit",
+    "key_technologies": [
+      "Next.js 15",
+      "TypeScript",
+      "Firebase Genkit",
+      "Google AI (Gemini)",
+      "Tailwind CSS",
+      "Radix UI",
+      "Zod"
+    ],
+    "core_features": [
+      "Interactive Playground",
+      "AI-Powered Prompt Tools",
+      "Prompt Analysis & Enhancement",
+      "Dashboard & Library Management",
+      "Authentication System"
+    ],
+    "architecture_patterns": [
+      "App Router",
+      "Server Actions",
+      "Component-based UI",
+      "AI Flow Orchestration"
+    ]
+  },
+  "workflow": {
+    "development_flow": {
+      "primary_commands": ["npm run dev", "npm run genkit:dev"],
+      "ports": {
+        "dev_server": 9002,
+        "genkit_dev": "auto"
+      }
+    },
+    "backup_strategy": {
+      "enabled": true,
+      "schedule": "daily",
+      "include_patterns": [
+        "src/**/*",
+        "docs/**/*",
+        "*.{json,md,ts,js}"
+      ],
+      "exclude_patterns": [
+        "node_modules/**/*",
+        ".next/**/*",
+        "*.log",
+        "*.tmp"
+      ]
+    }
+  },
+  "integrations": {
+    "trae_ide": {
+      "version": "latest",
+      "features": {
+        "rule_execution": true,
+        "context_awareness": true,
+        "auto_suggestions": true,
+        "task_management": true,
+        "health_monitoring": true
+      }
+    },
+    "ai_tools": {
+      "genkit_integration": true,
+      "flow_debugging": true,
+      "prompt_testing": true
+    }
+  },
+  "preferences": {
+    "code_style": {
+      "formatter": "prettier",
+      "linter": "eslint",
+      "typescript_strict": true
+    },
+    "ui_framework": "radix-ui",
+    "styling": "tailwindcss",
+    "theme": "dark",
+    "font": "Geist Sans"
+  },
+  "metadata": {
+    "created": "2024-12-19",
+    "last_updated": "2024-12-19",
+    "version_history": [
+      {
+        "version": "1.0.0",
+        "date": "2024-12-19",
+        "changes": "Initial Trae IDE configuration setup"
+      }
+    ]
+  }
+}

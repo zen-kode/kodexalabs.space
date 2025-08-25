@@ -1,0 +1,13 @@
+TXT
+@
+0
+"hosting-site=banded-encoder-466922-s9"
+14400
+--------------------
+A
+@
+0
+199.36.158.100
+60
+-----------------
+what i did*"DNS Reset initiated successfully.  ready to add DNS for my domain

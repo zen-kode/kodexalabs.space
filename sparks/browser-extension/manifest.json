@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Sparks Browser Extension",
+  "version": "0.1.0",
+  "description": "Capture and save web content as prompts for the Sparks application",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "contextMenus",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Sparks Extension"
+  },
+  "icons": {
+    "16": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjciIGZpbGw9IiMzQjgyRjYiLz4KPHA+dGggZD0iTTUgNEw5IDdINy41TDEwIDEyTDYgOUg3LjVMNSA0WiIgZmlsbD0iI0ZCQkYyNCIvPgo8L3N2Zz4K",
+    "32": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTQiIGZpbGw9IiMzQjgyRjYiLz4KPHA+dGggZD0iTTEwIDhMMTggMTRIMTVMMjAgMjRMMTIgMThIMTVMMTAgOFoiIGZpbGw9IiNGQkJGMjQiLz4KPC9zdmc+Cg==",
+    "48": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjQiIGN5PSIyNCIgcj0iMjEiIGZpbGw9IiMzQjgyRjYiLz4KPHA+dGggZD0iTTE1IDEyTDI3IDIxSDIyLjVMMzAgMzZMMTggMjdIMjIuNUwxNSAxMloiIGZpbGw9IiNGQkJGMjQiLz4KPC9zdmc+Cg==",
+    "128": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgdmlld0JveD0iMCAwIDEyOCAxMjgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjY0IiBjeT0iNjQiIHI9IjU2IiBmaWxsPSIjM0I4MkY2Ii8+CjxwYXRoIGQ9Ik00MCAzMkw3MiA1Nkg2MEw4MCA5Nkw0OCA3Mkg2MEw0MCAzMloiIGZpbGw9IiNGQkJGMjQiLz4KPC9zdmc+Cg=="
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "sparks-browser-extension",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The Sparks AI Prompt Engineering browser extension for seamless content capture and AI processing.",
+  "scripts": {
+    "dev": "plasmo dev",
+    "build": "plasmo build",
+    "package": "plasmo package",
+    "clean": "rimraf .plasmo build dist",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "lucide-react": "^0.263.1",
+    "plasmo": "^0.86.2",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "sharp": "^0.34.3",
+    "tailwind-merge": "^2.2.0",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.268",
+    "@types/react": "18.3.1",
+    "@types/react-dom": "18.3.1",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "rimraf": "^5.0.5",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.4.5"
+  },
+  "manifest": {
+    "host_permissions": [
+      "https://*/*",
+      "http://*/*"
+    ],
+    "permissions": [
+      "activeTab",
+      "contextMenus",
+      "storage",
+      "cookies"
+    ]
+  }
+}

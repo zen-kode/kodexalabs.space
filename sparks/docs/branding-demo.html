@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparks Branding Variations Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: white;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .theme-card {
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .theme-title {
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        /* Original Fire Theme */
+        .fire-theme {
+            background: linear-gradient(135deg, #1a0a0a, #2d1b1b);
+            border-color: #ff6b35;
+        }
+        
+        .fire-theme .welcome-banner {
+            background: linear-gradient(135deg, #ff6b35, #f7931e, #ff6b35);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .fire-theme .btn {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .fire-theme .badge {
+            background: rgba(255, 107, 53, 0.2);
+            color: #ff6b35;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        /* Ocean Blue Theme */
+        .ocean-theme {
+            background: linear-gradient(135deg, #0a1a2a, #1b2d3d);
+            border-color: #3b82f6;
+        }
+        
+        .ocean-theme .welcome-banner {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8, #3b82f6);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .ocean-theme .btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .ocean-theme .badge {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        /* Purple Innovation Theme */
+        .purple-theme {
+            background: linear-gradient(135deg, #1a0a2a, #2d1b3d);
+            border-color: #8b5cf6;
+        }
+        
+        .purple-theme .welcome-banner {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed, #8b5cf6);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .purple-theme .btn {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .purple-theme .badge {
+            background: rgba(139, 92, 246, 0.2);
+            color: #8b5cf6;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        /* Forest Green Theme */
+        .forest-theme {
+            background: linear-gradient(135deg, #0a2a1a, #1b3d2d);
+            border-color: #10b981;
+        }
+        
+        .forest-theme .welcome-banner {
+            background: linear-gradient(135deg, #10b981, #059669, #10b981);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .forest-theme .btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 500;
+        }
+        
+        .forest-theme .badge {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .component-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .stats-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Sparks Branding Variations</h1>
+        
+        <div class="theme-grid">
+            <!-- Original Fire Theme -->
+            <div class="theme-card fire-theme">
+                <h2 class="theme-title">🔥 Original Fire Theme</h2>
+                <div class="component-demo">
+                    <div class="welcome-banner">
+                        <h3>Welcome back, Developer!</h3>
+                        <p>Ready to ignite your creativity?</p>
+                        <button class="btn">Get Started</button>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stat-value">1,247</div>
+                        <div class="stat-label">Active Projects</div>
+                        <span class="badge">+12% this week</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ocean Blue Theme -->
+            <div class="theme-card ocean-theme">
+                <h2 class="theme-title">🌊 Ocean Blue Theme</h2>
+                <div class="component-demo">
+                    <div class="welcome-banner">
+                        <h3>Welcome back, Developer!</h3>
+                        <p>Dive into your workflow</p>
+                        <button class="btn">Get Started</button>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stat-value">1,247</div>
+                        <div class="stat-label">Active Projects</div>
+                        <span class="badge">+12% this week</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Purple Innovation Theme -->
+            <div class="theme-card purple-theme">
+                <h2 class="theme-title">💜 Purple Innovation Theme</h2>
+                <div class="component-demo">
+                    <div class="welcome-banner">
+                        <h3>Welcome back, Developer!</h3>
+                        <p>Innovate with purpose</p>
+                        <button class="btn">Get Started</button>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stat-value">1,247</div>
+                        <div class="stat-label">Active Projects</div>
+                        <span class="badge">+12% this week</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Forest Green Theme -->
+            <div class="theme-card forest-theme">
+                <h2 class="theme-title">🌲 Forest Green Theme</h2>
+                <div class="component-demo">
+                    <div class="welcome-banner">
+                        <h3>Welcome back, Developer!</h3>
+                        <p>Grow your ideas naturally</p>
+                        <button class="btn">Get Started</button>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stat-value">1,247</div>
+                        <div class="stat-label">Active Projects</div>
+                        <span class="badge">+12% this week</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+---
+description: Automated backup system for Google Drive with intelligent version naming, scheduling, and conflict resolution tailored for Next.js monorepo
+globs: apps/*/src/**/*.{ts,tsx,js,jsx}, packages/*/src/**/*.{ts,tsx}, **/*.{json,md}, apps/*/public/**/*.{svg,webp,png,jpg}, docs/**/*.md, memory-bank/**/*.md, *.{json,js,ts,ps1,bat,html}
+alwaysApply: true
+---
+
+BACKUP_SCHEDULE="daily_3am,weekly_sunday_2am,monthly_1st_1am"
+VERSION_FORMAT="{filename}_{timestamp}_{git_branch}_{commit_short}"
+RETENTION_POLICY="daily:7,weekly:4,monthly:12,yearly:3"
+SMART_NAMING=true
+COMPRESSION=true
+ENCRYPTION=true
+CONFLICT_RESOLUTION="merge_with_timestamp"
+EXCLUDE_PATTERNS="node_modules/,*.tmp,*.log,*.cache,build/,dist/,.next/,coverage/"
+GOOGLE_DRIVE_FOLDER="/Backups/sparks-dev/{year}/{month}"
+VERIFICATION=true
+NOTIFICATION="success,error,warning"
+AUTO_CLEANUP=true
+INCLUDE_DEPENDENCIES="package-lock.json,yarn.lock"
+BACKUP_PRIORITY="src/,packages/,docs/,memory-bank/"

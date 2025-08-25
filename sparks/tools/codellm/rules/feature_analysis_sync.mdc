@@ -1,0 +1,143 @@
+---
+description: Bidirectional synchronization engine between task list and feature analysis with automated feature tracking, redundancy detection, and intelligent status updates. Operates in harmony with @666 rule while maintaining distinct comment patterns and autonomous feature health monitoring.
+globs: task-list.md, apps/frontend/src/task-list.md, **/task-list.md, feature-analysis.md, **/feature-analysis.md, src/**/*.{ts,tsx}, components/**/*.{ts,tsx}, lib/**/*.{ts,tsx}, hooks/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Feature Analysis Synchronization Engine
+
+## Core Synchronization Principles
+
+TRIGGER_CONDITIONS="@Feature Analysis,@FeatureAnalysis,feature-sync"
+TRIGGER_PATTERN="flexible_match"
+TRIGGER_LOCATION="commit_message,command_input,comment_text,file_content,automated_schedule"
+TRIGGER_SENSITIVITY="case_insensitive"
+TRIGGER_VALIDATION="immediate_activation"
+AUTO_TRIGGER_FREQUENCY="every_30_minutes"
+SILENT_OPERATION=true
+
+## Bidirectional Sync Architecture
+
+SYNC_DIRECTION="bidirectional"
+TASK_TO_FEATURE_SYNC="enabled"
+FEATURE_TO_TASK_SYNC="enabled"
+CONFLICT_RESOLUTION="feature_analysis_priority"
+SYNC_VALIDATION="cross_reference_verification"
+DATA_INTEGRITY="checksum_validation"
+
+## Feature Status Tracking
+
+FEATURE_STATES="working,not_working,partially_working,deprecated,redundant,unused,efficient,inefficient"
+STATUS_DETECTION="automated_code_analysis,usage_pattern_analysis,performance_metrics,error_rate_monitoring"
+HEALTH_INDICATORS="✅,❌,⚠️,🔄,🗑️,📊,⚡,🐌"
+STATUS_VALIDATION="multi_source_verification"
+
+## Automated Feature Analysis
+
+ANALYSIS_FREQUENCY="continuous_monitoring"
+CODE_SCANNING="ast_parsing,dependency_analysis,import_tracking,usage_detection"
+PERFORMANCE_MONITORING="execution_time,memory_usage,error_rates,user_engagement"
+REDUNDANCY_DETECTION="duplicate_functionality,similar_components,unused_imports,dead_code"
+EFFICIENCY_ANALYSIS="bundle_size_impact,render_performance,api_call_optimization,resource_utilization"
+
+## Comment Differentiation System
+
+TASK_COMMENT_PREFIX="[TASK-666]"
+FEATURE_COMMENT_PREFIX="[FEATURE-ANALYSIS]"
+SYNC_COMMENT_PREFIX="[SYNC-UPDATE]"
+AUTO_COMMENT_PREFIX="[AUTO-ANALYSIS]"
+COMMENT_UNIQUENESS="timestamp_suffix,operation_id,source_identifier"
+COMMENT_FORMATTING="structured_markdown,status_badges,progress_indicators"
+
+## Integration with @666 Rule
+
+COOPERATIVE_MODE="enabled"
+RULE_COORDINATION="non_interfering"
+SHARED_DATA_ACCESS="read_write_coordination"
+CONFLICT_AVOIDANCE="operation_queuing,lock_management,priority_scheduling"
+CROSS_RULE_COMMUNICATION="event_bus,shared_state,notification_system"
+
+## Redundancy Detection & Cleanup
+
+REDUNDANCY_PATTERNS="duplicate_components,similar_functions,unused_features,overlapping_functionality"
+CLEANUP_ACTIONS="flag_for_review,suggest_consolidation,auto_deprecate,merge_recommendations"
+DELETION_CRITERIA="zero_usage,high_maintenance_cost,security_vulnerabilities,performance_impact"
+SAFETY_CHECKS="dependency_verification,impact_analysis,rollback_preparation"
+
+## Automated Reporting
+
+REPORT_GENERATION="feature_health_dashboard,redundancy_report,efficiency_metrics,cleanup_recommendations"
+REPORT_FREQUENCY="daily_summary,weekly_deep_analysis,on_demand_reports"
+REPORT_DISTRIBUTION="task_list_updates,feature_analysis_file,developer_notifications"
+REPORT_FORMAT="markdown_tables,status_badges,progress_charts,action_items"
+
+## Advanced Analytics
+
+USAGE_TRACKING="feature_adoption,user_interaction_patterns,performance_bottlenecks"
+TREND_ANALYSIS="feature_lifecycle,deprecation_patterns,efficiency_improvements"
+PREDICTIVE_INSIGHTS="maintenance_forecasting,performance_degradation_prediction,optimization_opportunities"
+BENCHMARKING="industry_standards,best_practices,performance_targets"
+
+## Security & Compliance
+
+DATA_PROTECTION="sensitive_data_masking,secure_logging,access_control"
+AUDIT_TRAIL="operation_logging,change_tracking,decision_rationale"
+COMPLIANCE_CHECKS="code_standards,security_policies,performance_requirements"
+PRIVACY_PRESERVATION="anonymized_metrics,consent_management,data_minimization"
+
+## Error Handling & Recovery
+
+ERROR_DETECTION="validation_failures,sync_conflicts,analysis_errors"
+RECOVERY_STRATEGIES="automatic_retry,fallback_procedures,manual_intervention_triggers"
+ERROR_REPORTING="detailed_logs,user_notifications,developer_alerts"
+SELF_HEALING="automatic_correction,state_restoration,consistency_repair"
+
+## Performance Optimization
+
+OPTIMIZATION_TARGETS="sync_speed,analysis_accuracy,resource_efficiency"
+CACHING_STRATEGY="analysis_results,feature_metadata,sync_state"
+BATCH_PROCESSING="bulk_updates,scheduled_operations,queue_management"
+RESOURCE_MANAGEMENT="memory_limits,cpu_throttling,concurrent_operations"
+
+## Extensibility & Customization
+
+PLUGIN_ARCHITECTURE="custom_analyzers,external_integrations,rule_extensions"
+CONFIGURATION_OPTIONS="analysis_thresholds,sync_intervals,notification_preferences"
+CUSTOM_RULES="project_specific_patterns,team_conventions,domain_requirements"
+API_INTEGRATION="external_tools,monitoring_systems,reporting_platforms"
+
+## Quality Assurance
+
+TESTING_FRAMEWORK="unit_tests,integration_tests,end_to_end_validation"
+QUALITY_METRICS="accuracy_rates,false_positive_detection,performance_benchmarks"
+CONTINUOUS_IMPROVEMENT="feedback_loops,learning_algorithms,adaptation_mechanisms"
+VALIDATION_PROTOCOLS="peer_review,automated_verification,manual_confirmation"
+
+## Activation & Execution
+
+ACTIVATION_GUARANTEE="seamless_integration,zero_downtime,backward_compatibility"
+EXECUTION_PRIORITY="high_priority,resource_allocation,queue_management"
+OPERATION_MODE="background_processing,non_blocking,asynchronous_execution"
+MONITORING="real_time_status,progress_tracking,performance_metrics"
+
+## Success Criteria
+
+- Bidirectional sync maintains 99.9% data consistency
+- Feature analysis updates occur within 30 seconds of code changes
+- Redundancy detection identifies 95% of duplicate functionality
+- Comment differentiation prevents conflicts with @666 rule
+- Automated cleanup reduces codebase bloat by 20%
+- Performance impact remains under 5% of total system resources
+- Integration with existing workflows requires zero configuration changes
+- Feature health tracking provides actionable insights for 100% of components
+
+## Implementation Notes
+
+1. **Non-Interference Guarantee**: This rule operates independently of @666 while sharing data through coordinated access patterns
+2. **Comment Uniqueness**: All generated comments include unique identifiers to prevent confusion with task list updates
+3. **Autonomous Operation**: Feature analysis runs continuously in background without user intervention
+4. **Intelligent Prioritization**: Critical issues (security, performance) receive immediate attention and escalation
+5. **Graceful Degradation**: System continues operating even if individual analysis components fail
+6. **Learning Capability**: Analysis accuracy improves over time through pattern recognition and feedback
+7. **Scalability**: Architecture supports projects of any size with linear performance scaling
+8. **Maintainability**: Self-documenting code and comprehensive logging ensure long-term sustainability

@@ -1,0 +1,26 @@
+---
+description:  Comprehensive debugging, error fixing, and file organization system with Next.js-specific import path resolution and monorepo structure optimization
+globs: apps/*/src/**/*.{ts,tsx}, packages/*/src/**/*.{ts,tsx}, apps/*/src/components/**/*.tsx, **/package.json, **/tsconfig*.json, apps/*/next.config.*, apps/*/tailwind.config.*
+alwaysApply: false
+---
+
+DEBUG_LEVELS="error,warning,info,debug"
+AUTO_FIX_IMPORTS=true
+IMPORT_RESOLUTION="relative_to_absolute,unused_removal,missing_addition,monorepo_aliases"
+NEXT_JS_OPTIMIZATIONS=true
+MONOREPO_STRUCTURE="apps/,packages/"
+FILE_ORGANIZATION="by_feature,by_component_type,by_package"
+FOLDER_STRUCTURE="src/{components,hooks,lib,types,contexts}/,ui/,__tests__/"
+CLEANING_RULES="remove_duplicates,fix_naming_conventions,update_dependencies,dedupe_ui_components"
+ERROR_HANDLING="react_error_boundaries,async_await_wrapping,type_validation"
+TASKLIST_INTEGRATION=true
+TODO_SCANNING="TODO,FIXME,HACK,NOTE,BUG,OPTIMIZE"
+DEPENDENCY_CHECK=true
+SHARED_PACKAGE_SYNC=true
+CODE_FORMATTING="prettier,eslint"
+LINTING=true
+PERFORMANCE_ANALYSIS="bundle_analyzer,lighthouse"
+SECURITY_SCAN="npm_audit,dependency_check"
+REFACTOR_SUGGESTIONS="component_splitting,hook_extraction,utility_consolidation"
+TYPESCRIPT_STRICT=true
+DUPLICATE_DETECTION="ui_components,utility_functions,type_definitions"

@@ -1,0 +1,26 @@
+---
+description: You are feeling lost and need guidance. This rule will analyze your current status, recent work, and project goals to provide a clear summary of your current position. It will identify potential issues, suggest immediate next steps, and help you regain focus and direction. It will act as your personal guide to navigate your workflow and ensure you stay productive.
+globs: task-list.md, apps/frontend/src/task-list.md, memory-bank/**/*.md, docs/**/*.md, apps/frontend/src/app/**/page.tsx, apps/frontend/src/components/**/*.tsx, apps/frontend/src/hooks/**/*.ts, apps/frontend/src/lib/**/*.ts, apps/frontend/src/ai/flows/**/*.ts, **/__tests__/**/*.{ts,tsx}, **/package.json, apps/frontend/next.config.*, *.{md,json}, apps/frontend/src/contexts/**/*.tsx, packages/*/src/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+ANALYSIS_SCOPE="current_status,recent_changes,project_goals,blockers"
+STATUS_INDICATORS="task_completion,code_changes,test_coverage,dependency_health"
+GUIDANCE_AREAS="immediate_actions,priority_tasks,workflow_optimization,focus_restoration"
+CONTEXT_SOURCES="memory_bank,task_lists,recent_commits,active_branches"
+PROGRESS_TRACKING=true
+GOAL_ALIGNMENT_CHECK=true
+PRODUCTIVITY_METRICS="commits_today,files_modified,tests_passing,tasks_completed"
+BLOCKER_DETECTION="failing_tests,missing_dependencies,configuration_issues,merge_conflicts"
+SUGGESTION_TYPES="next_steps,quick_wins,long_term_planning,skill_development"
+FOCUS_RESTORATION="eliminate_distractions,prioritize_tasks,time_boxing,energy_management"
+WORKFLOW_ANALYSIS="development_flow,testing_strategy,deployment_pipeline,collaboration"
+PERSONALIZED_GUIDANCE=true
+EMOTIONAL_SUPPORT=true
+MOTIVATION_BOOST=true
+CLARITY_METRICS="goal_clarity,task_clarity,technical_direction,business_value"
+ACTIONABLE_OUTPUT=true
+URGENCY_CLASSIFICATION="critical,high,medium,low"
+SUCCESS_CELEBRATION=true
+LEARNING_OPPORTUNITIES="skill_gaps,knowledge_expansion,tool_mastery"
+ENERGY_ASSESSMENT="cognitive_load,technical_debt,complexity_fatigue"

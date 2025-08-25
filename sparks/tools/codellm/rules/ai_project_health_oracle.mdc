@@ -1,0 +1,10 @@
+---
+description: Advanced AI-driven project monitoring and predictive maintenance system with context-aware triggers, machine learning analytics, and sophisticated automation workflows. Operates independently with zero interference while providing intelligent insights, predictive issue detection, and automated resolution capabilities.
+globs: apps/*/package.json, packages/*/package.json, **/tsconfig*.json,  apps/*/next.config.*, apps/*/tailwind.config.*, **/.eslintrc*,  **/.prettierrc*, apps/*/src/**/*.{ts,tsx}, packages/*/src/**/*.{ts,tsx},  **/__tests__/**/*.{ts,tsx}, **/jest.config.*, **/.github/**/*.yml,  **/.env*, **/docker*, **/k8s/**/*.yml, **/monitoring/**/*.{json,yml,yaml}
+alwaysApply: false
+---
+
+# Your rule content
+
+- The rule description goes here
+- You can use markdown but don't have to

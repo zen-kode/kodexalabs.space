@@ -1,0 +1,7 @@
+---
+description: Ensures all code related to the project's styling adheres to the defined guidelines, ensuring consistency across the application.
+globs: ```"frontend/src/**/*.css", packages/shared-ui/src/ui"
+alwaysApply: true
+---
+
+Ensures that all pages and components adhere to the styling guidelines defined in the `style.css` file. This includes consistency in colors, fonts, and spacing, while allowing for custom styles where necessary.

@@ -1,0 +1,148 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+    function isAdmin() {
+      return request.auth != null && 
+             request.auth.token.admin == true;
+    }
+    
+    function isValidImageFile() {
+      return request.resource.contentType.matches('image/.*') &&
+             request.resource.size < 10 * 1024 * 1024; // 10MB limit
+    }
+    
+    function isValidDocumentFile() {
+      return request.resource.contentType.matches('(application/pdf|text/.*|application/msword|application/vnd.openxmlformats-officedocument.wordprocessingml.document)') &&
+             request.resource.size < 50 * 1024 * 1024; // 50MB limit
+    }
+    
+    function isValidAudioFile() {
+      return request.resource.contentType.matches('audio/.*') &&
+             request.resource.size < 100 * 1024 * 1024; // 100MB limit
+    }
+    
+    function isValidVideoFile() {
+      return request.resource.contentType.matches('video/.*') &&
+             request.resource.size < 500 * 1024 * 1024; // 500MB limit
+    }
+    
+    // User profile images
+    match /users/{userId}/profile/{fileName} {
+      // Users can upload their own profile images
+      allow write: if isOwner(userId) && 
+                      isValidImageFile();
+      
+      // Anyone can read profile images (public)
+      allow read: if true;
+    }
+    
+    // User private files
+    match /users/{userId}/private/{fileName} {
+      // Users can manage their own private files
+      allow read, write: if isOwner(userId) &&
+                            (isValidImageFile() || 
+                             isValidDocumentFile() ||
+                             isValidAudioFile());
+    }
+    
+    // Prompt attachments
+    match /prompts/{promptId}/attachments/{fileName} {
+      // Users can upload attachments to their prompts
+      allow write: if isAuthenticated() &&
+                      (isValidImageFile() || 
+                       isValidDocumentFile());
+      
+      // Users can read attachments from prompts they have access to
+      allow read: if isAuthenticated();
+    }
+    
+    // Tool assets
+    match /tools/{toolId}/assets/{fileName} {
+      // Users can upload assets to their tools
+      allow write: if isAuthenticated() &&
+                      (isValidImageFile() || 
+                       isValidDocumentFile());
+      
+      // Users can read tool assets
+      allow read: if isAuthenticated();
+    }
+    
+    // Public uploads (community content)
+    match /public/{category}/{fileName} {
+      // Authenticated users can upload to public folders
+      allow write: if isAuthenticated() &&
+                      (isValidImageFile() || 
+                       isValidDocumentFile());
+      
+      // Anyone can read public content
+      allow read: if true;
+    }
+    
+    // Temporary uploads (24-hour expiry)
+    match /temp/{userId}/{fileName} {
+      // Users can upload temporary files
+      allow write: if isOwner(userId) &&
+                      (isValidImageFile() || 
+                       isValidDocumentFile() ||
+                       isValidAudioFile() ||
+                       isValidVideoFile());
+      
+      // Users can read their own temporary files
+      allow read: if isOwner(userId);
+    }
+    
+    // System backups (admin only)
+    match /backups/{document=**} {
+      allow read, write: if isAdmin();
+    }
+    
+    // System logs (admin only)
+    match /logs/{document=**} {
+      allow read, write: if isAdmin();
+    }
+    
+    // Analytics data (admin only)
+    match /analytics/{document=**} {
+      allow read, write: if isAdmin();
+    }
+    
+    // Export data (users can read their own exports)
+    match /exports/{userId}/{fileName} {
+      allow read: if isOwner(userId);
+      allow write: if isAdmin();
+    }
+    
+    // AI generated content
+    match /ai-generated/{userId}/{fileName} {
+      // Users can read their AI-generated content
+      allow read: if isOwner(userId);
+      
+      // System can write AI-generated content
+      allow write: if isAdmin();
+    }
+    
+    // Shared content (with specific sharing rules)
+    match /shared/{shareId}/{fileName} {
+      // Anyone with the share ID can read
+      allow read: if true;
+      
+      // Only authenticated users can create shares
+      allow write: if isAuthenticated();
+    }
+    
+    // Default deny all other paths
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

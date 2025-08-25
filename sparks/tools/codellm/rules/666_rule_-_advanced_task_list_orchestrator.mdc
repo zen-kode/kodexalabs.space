@@ -1,0 +1,45 @@
+---
+description: Simple task list management for efficient development workflow
+globs: task-list.md, **/task-list.md
+alwaysApply: false
+---
+
+# Simple Task Management Rule
+
+## Triggers
+- `@task` - Add or update tasks
+- `@status` - Check current progress
+- `@complete` - Mark task as completed
+
+## Basic Operations
+
+### Adding Tasks
+When user says "@task [description]":
+1. Add task to task-list.md
+2. Set status as "pending"
+3. Assign appropriate priority
+
+### Checking Status
+When user says "@status":
+1. Show current active tasks
+2. Display recent progress
+3. Suggest next steps
+
+### Completing Tasks
+When user says "@complete [task]":
+1. Mark task as completed
+2. Update task-list.md
+3. Suggest next priority task
+
+## Guidelines
+- Keep task descriptions clear and actionable
+- Focus on one task at a time
+- Update status regularly
+- Celebrate completions
+
+## File Management
+- Primary file: task-list.md
+- Backup on major changes
+- Keep history of completed tasks
+
+This rule replaces complex orchestration with simple, effective task management.

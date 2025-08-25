@@ -1,0 +1,31 @@
+---
+description: Standalone validation rule that independently verifies the configurations of the 666 rule, Debug and Organize Master Rule, and Smart Backup Versioning Rule without modifying them. Provides persistent chat interface with dedicated validation buttons and read-only configuration inspection capabilities.
+globs: .codellm/rules/666_rule_-_advanced_task_list_orchestrator.mdc, .codellm/rules/debug_&_organize_master.mdc, .codellm/rules/smart_backup_with_versioning.mdc, .codellm/rules/*.mdc, validation/**/*.{js,ts,yml,yaml}
+alwaysApply: false
+---
+
+VALIDATION_MODE="read_only_inspection"
+INTERFERENCE_PREVENTION="absolute_isolation"
+OPERATION_SCOPE="syntax_parameters_conflicts_only"
+STATE_SHARING="none"
+DEPENDENCY_ISOLATION="complete"
+
+VALIDATION_TARGETS="666_rule,debug_organize_rule,smart_backup_rule"
+TARGET_FILE_PATHS=".codellm/rules/666_rule_-_advanced_task_list_orchestrator.mdc,.codellm/rules/debug_&_organize_master.mdc,.codellm/rules/smart_backup_with_versioning.mdc"
+FILE_EXTENSION="mdc"
+RULE_DIRECTORY=".codellm/rules/"
+
+VALIDATION_METHODS="configuration_parsing,parameter_validation,conflict_detection,syntax_checking"
+READ_SAFE_OPERATIONS="file_reading,mdc_parsing,string_analysis"
+MODIFICATION_PROTECTION="write_disabled,state_immutable,config_locked"
+
+INTERFACE_PERSISTENCE="session_based"
+BUTTON_LABELS="Validate 666 Rule,Validate Debug Rule,Validate Backup Rule"
+OUTPUT_FORMAT="exact_markdown_specification"
+CLIPBOARD_INTEGRATION="raw_markdown_copy"
+
+PROJECT_STRUCTURE_COMPLIANCE=".codellm_rules_directory,mdc_file_extension"
+FORMATTING="2_space_indentation,comment_preservation,original_structure_maintained"
+PLACEHOLDER_ELIMINATION="complete"
+
+ACTUAL_RULE_LOCATIONS="C:\Users\k00lr\Downloads\sparks-dev\.codellm\rules\*.mdc"

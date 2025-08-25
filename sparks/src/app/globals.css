@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 90%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 0 0% 85%;
+    --accent-foreground: 0 0% 10%;
+    --destructive: 0 0% 20%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 0 0% 85%;
+    --input: 0 0% 95%;
+    --ring: 22 88% 59%;
+    --radius: 0.8rem;
+    
+    /* Chart colors - grayscale variants */
+    --chart-1: 0 0% 20%;
+    --chart-2: 0 0% 35%;
+    --chart-3: 0 0% 50%;
+    --chart-4: 0 0% 65%;
+    --chart-5: 0 0% 80%;
+    
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-accent: 0 0% 90%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 85%;
+    --sidebar-ring: 22 88% 59%;
+    
+    /* Hover and interactive colors */
+    --hover-border: 22 88% 59%;
+    --hover-accent: 260 80% 65%;
+    --glow-primary: 22 88% 59%;
+    --glow-secondary: 260 80% 65%;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 90%;
+    --destructive: 0 0% 80%;
+    --destructive-foreground: 0 0% 5%;
+    --border: 0 0% 15%;
+    --input: 0 0% 8%;
+    --ring: 22 88% 59%;
+
+    /* Chart colors - grayscale variants for dark mode */
+    --chart-1: 0 0% 80%;
+    --chart-2: 0 0% 65%;
+    --chart-3: 0 0% 50%;
+    --chart-4: 0 0% 35%;
+    --chart-5: 0 0% 20%;
+
+    --sidebar-background: 0 0% 2%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-accent: 0 0% 8%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 10%;
+    --sidebar-ring: 22 88% 59%;
+    
+    /* Hover and interactive colors for dark mode */
+    --hover-border: 22 88% 59%;
+    --hover-accent: 260 80% 65%;
+    --glow-primary: 22 88% 59%;
+    --glow-secondary: 260 80% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-size: 0.8rem; /* Reduced base font size by 20% */
+  }
+  
+  /* Screen reader only class for accessibility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  /* Global font size reduction - 20% smaller */
+  html {
+    font-size: 12.8px; /* Default is 16px, reduced to 12.8px (20% reduction) */
+  }
+  
+  /* Specific heading size adjustments */
+  h1 { font-size: 1.6rem; } /* Was ~2rem */
+  h2 { font-size: 1.28rem; } /* Was ~1.6rem */
+  h3 { font-size: 1.12rem; } /* Was ~1.4rem */
+  h4 { font-size: 1rem; } /* Was ~1.25rem */
+  h5 { font-size: 0.88rem; } /* Was ~1.1rem */
+  h6 { font-size: 0.8rem; } /* Was ~1rem */
+  
+  /* Button and interactive element font sizes */
+  button, .btn {
+    font-size: 0.72rem; /* Reduced from ~0.9rem */
+  }
+  
+  /* Input and form element font sizes */
+  input, textarea, select {
+    font-size: 0.72rem; /* Reduced from ~0.9rem */
+  }
+  
+  /* Enhanced hover effects with original colors */
+  .glowing-textarea {
+    @apply transition-all duration-300;
+  }
+  .glowing-textarea:focus-within {
+    border-color: hsl(var(--glow-primary));
+    box-shadow: 0 0 10px hsl(var(--glow-primary) / 0.5), inset 0 0 10px hsl(var(--glow-primary) / 0.5);
+  }
+  
+  /* Hover effects for interactive elements */
+  button:hover, .hover\:border-accent:hover {
+    border-color: hsl(var(--hover-border)) !important;
+    box-shadow: 0 0 8px hsl(var(--hover-border) / 0.3);
+  }
+  
+  /* Card hover effects */
+  .card:hover {
+    box-shadow: 0 4px 12px hsl(var(--glow-secondary) / 0.15), 0 0 0 1px hsl(var(--hover-border) / 0.2);
+  }
+  
+  /* Input focus effects */
+  input:focus, textarea:focus, select:focus {
+    border-color: hsl(var(--hover-border));
+    box-shadow: 0 0 0 2px hsl(var(--hover-border) / 0.2);
+  }
+  
+  .compact\:py-1 {
+    @apply py-1;
+  }
+  .compact\:px-2 {
+      @apply px-2;
+  }
+  .compact\:gap-1 {
+      @apply gap-1;
+  }
+}
+
+/* Add these animation classes */
+@keyframes icon-hover {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(5deg); }
+  100% { transform: scale(1.05) rotate(0deg); }
+}
+
+@keyframes icon-loading {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes icon-success {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.icon-hover:hover {
+  animation: icon-hover 0.3s ease-in-out;
+}
+
+.icon-loading {
+  animation: icon-loading 1s linear infinite;
+}
+
+.icon-success {
+  animation: icon-success 0.5s ease-in-out;
+}
+
+/* Modern color wheel styles */
+.color-wheel-container {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
