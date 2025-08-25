@@ -1,6 +1,13 @@
-# How to Get Your Firebase Configuration 🔥
+# Firebase Configuration - Hybrid Architecture 🔥
 
-**Follow these exact steps to get your Firebase config values:**
+**Getting Firebase config for storage and functions in our hybrid Supabase + Firebase + Vercel setup.**
+
+## 🎯 Firebase Role in Hybrid Architecture
+
+**⚠️ IMPORTANT: This is for STORAGE & FUNCTIONS only:**
+- 🗄️ **Supabase** = Primary database & authentication
+- 🔥 **Firebase** = Storage, functions, analytics & notifications  
+- ⚡ **Vercel** = Hosting & edge computing
 
 ## Step 1: Go to Firebase Console
 
@@ -12,9 +19,9 @@
 
 ### If you DON'T have a project yet:
 1. Click "Create a project"
-2. Enter project name: `kodexalabs-space`
+2. Enter project name: `kodexalabs-space-storage` (emphasize storage purpose)
 3. Click "Continue"
-4. Enable Google Analytics: **Yes**
+4. Enable Google Analytics: **Yes** (for storage analytics)
 5. Choose your Analytics account
 6. Click "Create project"
 7. Wait for project creation (takes 1-2 minutes)
@@ -26,8 +33,8 @@
 
 1. In your project dashboard, look for this icon: **</>** (Web)
 2. Click the **</>** icon
-3. App nickname: `Sparks Web App`
-4. ✅ Check "Also set up Firebase Hosting for this app"
+3. App nickname: `kodexalabs-storage`
+4. ❌ **DO NOT** check "Also set up Firebase Hosting" (Vercel handles hosting)
 5. Click "Register app"
 
 ## Step 4: Copy Your Configuration
@@ -41,13 +48,13 @@ import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+// Firebase configuration for STORAGE & FUNCTIONS only
 // For Firebase JS SDK v9-compat and v9
 const firebaseConfig = {
   apiKey: "AIzaSyC...",                    // ← COPY THIS
   authDomain: "your-project.firebaseapp.com",  // ← COPY THIS
   projectId: "your-project-id",                // ← COPY THIS
-  storageBucket: "your-project.appspot.com",   // ← COPY THIS
+  storageBucket: "your-project.appspot.com",   // ← MOST IMPORTANT for storage
   messagingSenderId: "123456789",              // ← COPY THIS
   appId: "1:123:web:abc123def456"              // ← COPY THIS
 };
@@ -58,13 +65,26 @@ const firebaseConfig = {
 **Open `sparks/.env` and replace the values:**
 
 ```bash
-# Replace these with YOUR actual values from Firebase console
+# HYBRID ARCHITECTURE - Firebase for Storage & Functions Only
+# (Supabase handles database & auth, Vercel handles hosting)
+
+# Firebase Configuration - STORAGE & FUNCTIONS
 NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-actual-project-id
 NEXT_PUBLIC_FIREBASE_API_KEY=AIzaSyC...
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-project.appspot.com  # ← PRIMARY USE
 NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=123456789
 NEXT_PUBLIC_FIREBASE_APP_ID=1:123:web:abc123def456
+
+# Supabase Configuration - DATABASE & AUTH (Primary)
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+
+# Vercel Configuration - HOSTING & EDGE
+VERCEL_TOKEN=your-vercel-token
+VERCEL_ORG_ID=your-org-id
+VERCEL_PROJECT_ID=your-project-id
 
 # Keep your existing Gemini API key
 GEMINI_API_KEY=AIzaSyBsU4DXL2gWcvgqzTudctYzg3POaI9tvvA
@@ -138,3 +158,27 @@ node test-firebase-connection.js
 - [ ] Ran test script successfully
 
 **You've got this! Take it one step at a time.** 💪
+
+## ✅ Firebase Configuration Complete!
+
+**Firebase storage & functions are now configured for your hybrid architecture!**
+
+### 🎯 What You've Set Up:
+- 🔥 **Firebase**: Storage, functions, analytics & notifications
+- 🗄️ **Supabase**: Database & authentication (configure separately)
+- ⚡ **Vercel**: Hosting & edge computing (configure separately)
+
+### Next Steps:
+1. **Save your `.env` file** with all three service configurations
+2. **Complete Supabase setup** (see `SUPABASE_SETUP_GUIDE.md`)
+3. **Configure Vercel deployment** (see `VERCEL_DEPLOYMENT_GUIDE.md`)
+4. **Test hybrid integration** between all services
+5. **Start building your app!**
+
+### 📚 Related Documentation:
+- `FIREBASE_STEP_BY_STEP_SETUP.md` - Detailed Firebase setup
+- `SUPABASE_SETUP_GUIDE.md` - Database & auth setup
+- `VERCEL_DEPLOYMENT_GUIDE.md` - Hosting & deployment
+- `HYBRID_ARCHITECTURE.md` - Complete architecture overview
+
+**Architecture Status:** Firebase ✅ | Supabase ⏳ | Vercel ⏳

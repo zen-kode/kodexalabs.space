@@ -1,14 +1,19 @@
-# Firebase Setup Guide - Step by Step 🔥
+# Firebase Setup Guide - Hybrid Architecture 🔥
 
-**Don't worry! We'll get Firebase working together. Follow these steps one by one.**
+**Setting up Firebase as part of our hybrid Supabase + Firebase + Vercel architecture.**
 
-## 🎯 What We're Setting Up
+## 🎯 Firebase Role in Hybrid Architecture
 
-Your project needs Firebase for:
-- Authentication (user login/signup)
-- Firestore Database (storing data)
-- Hosting (deploying your app)
-- Storage (file uploads)
+**⚠️ IMPORTANT: This is a HYBRID setup where:**
+- 🗄️ **Supabase** = Primary database & authentication
+- 🔥 **Firebase** = Storage, functions, analytics & notifications
+- ⚡ **Vercel** = Hosting & edge computing
+
+Firebase will handle:
+- 📁 **File Storage** (images, documents, media)
+- ⚙️ **Cloud Functions** (serverless backend logic)
+- 📊 **Analytics** (user behavior tracking)
+- 📱 **Push Notifications** (FCM)
 
 ## 📋 Prerequisites Check
 
@@ -99,66 +104,94 @@ firebase init
 - Automatic builds: **No**
 - Storage rules file: `storage.rules` (already exists)
 
-## 🔐 Enable Authentication
+## 🔐 Authentication Setup
 
-### Step 7: Setup Authentication Methods
+### ⚠️ Authentication Handled by Supabase
 
-1. In Firebase Console → Authentication → Sign-in method
-2. Enable these providers:
-   - **Email/Password** ✅
-   - **Google** ✅ (recommended)
-   - **GitHub** ✅ (optional)
+**In our hybrid architecture, authentication is handled by Supabase, NOT Firebase.**
 
-### Step 8: Configure Authorized Domains
+Firebase authentication is **DISABLED** in this setup because:
+- Supabase provides superior authentication with Row Level Security
+- Avoids conflicts between two auth systems
+- Simplifies user management
 
-1. Authentication → Settings → Authorized domains
-2. Add these domains:
-   - `localhost` (for development)
-   - `your-domain.com` (your production domain)
+**Skip Firebase Authentication setup** - refer to `SUPABASE_SETUP_GUIDE.md` instead.
 
-## 💾 Setup Firestore Database
+### Step 7: Verify Authentication is Disabled
 
-### Step 9: Create Firestore Database
+1. In Firebase Console → Authentication
+2. Ensure no sign-in methods are enabled
+3. This prevents conflicts with Supabase auth
 
-1. Firebase Console → Firestore Database
-2. Click "Create database"
-3. Start in **test mode** (we'll secure it later)
-4. Choose location: `us-central1` (or closest to you)
+## 💾 Database Setup
 
-### Step 10: Configure Security Rules
+### ⚠️ Database Handled by Supabase
 
-Your `firestore.rules` file should look like this:
+**In our hybrid architecture, the primary database is Supabase PostgreSQL, NOT Firestore.**
+
+Firestore is **DISABLED** in this setup because:
+- Supabase PostgreSQL provides more powerful relational database features
+- Better performance and SQL capabilities
+- Integrated with Supabase authentication and RLS
+
+**Skip Firestore setup** - refer to `SUPABASE_SETUP_GUIDE.md` for database configuration.
+
+### Step 8: Verify Firestore is Disabled
+
+1. In Firebase Console → Firestore Database
+2. Do NOT create a Firestore database
+3. This prevents conflicts with Supabase database
+
+## 🗂️ Setup Cloud Storage
+
+### ✅ Primary Storage Service in Hybrid Architecture
+
+**Firebase Storage is a KEY component in our hybrid setup for:**
+- User profile images and avatars
+- Post images and media content
+- Document uploads and attachments
+- Temporary file storage
+
+### Step 9: Enable Cloud Storage
+
+1. Firebase Console → Storage
+2. Click "Get started"
+3. Choose **"Start in production mode"** (we'll configure security rules)
+4. Select location (choose closest to your users)
+
+### Step 10: Configure Storage Security Rules
+
+**Important:** Since we use Supabase auth, we need custom security rules.
+
+Update `sparks/storage.rules`:
 
 ```javascript
 rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    // Users can read/write their own data
-    match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Public read access for post images
+    match /posts/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null; // Custom token from Supabase
     }
     
-    // Public read access for certain collections
-    match /public/{document=**} {
-      allow read: if true;
-      allow write: if request.auth != null;
+    // User-specific uploads (validated via custom claims)
+    match /users/{userId}/{allPaths=**} {
+      allow read, write: if request.auth != null 
+                      && request.auth.token.sub == userId;
+    }
+    
+    // Temporary uploads
+    match /temp/{allPaths=**} {
+      allow read, write: if request.auth != null;
     }
   }
 }
 ```
 
-## 🗂️ Setup Cloud Storage
-
-### Step 11: Enable Cloud Storage
-
-1. Firebase Console → Storage
-2. Click "Get started"
-3. Start in **test mode**
-4. Choose same location as Firestore
-
 ## 🧪 Test Your Setup
 
-### Step 12: Run Development Server
+### Step 11: Run Development Server
 
 ```bash
 # In sparks directory
@@ -166,13 +199,13 @@ npm install
 npm run dev
 ```
 
-### Step 13: Test Firebase Connection
+### Step 12: Test Firebase Storage Connection
 
-Create a test file `sparks/test-firebase.js`:
+Create a test file `sparks/test-firebase-storage.js`:
 
 ```javascript
 const { initializeApp } = require('firebase/app');
-const { getFirestore, connectFirestoreEmulator } = require('firebase/firestore');
+const { getStorage, ref, listAll } = require('firebase/storage');
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -185,50 +218,70 @@ const firebaseConfig = {
 
 try {
   const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  console.log('✅ Firebase connected successfully!');
-  console.log('Project ID:', firebaseConfig.projectId);
+  const storage = getStorage(app);
+  
+  console.log('✅ Firebase Storage connected successfully!');
+  console.log('Storage Bucket:', firebaseConfig.storageBucket);
+  console.log('🔥 Firebase is ready for file uploads in hybrid architecture!');
 } catch (error) {
-  console.error('❌ Firebase connection failed:', error);
+  console.error('❌ Firebase Storage connection failed:', error);
 }
 ```
 
 Run the test:
 ```bash
-node test-firebase.js
+node test-firebase-storage.js
 ```
 
-## 🚀 Deploy to Firebase Hosting
+## 🚀 Deployment
 
-### Step 14: Build and Deploy
+### ⚠️ Hosting Handled by Vercel
 
+**In our hybrid architecture, hosting is handled by Vercel, NOT Firebase Hosting.**
+
+Firebase Hosting is **DISABLED** because:
+- Vercel provides superior Next.js optimization
+- Better integration with edge functions
+- Automatic deployments from Git
+
+### Step 12: Deploy to Vercel
+
+Refer to `VERCEL_DEPLOYMENT_GUIDE.md` for complete deployment instructions.
+
+**Quick deployment:**
 ```bash
-# Build your Next.js app
-npm run build
+# Install Vercel CLI
+npm i -g vercel
 
-# Deploy to Firebase
-firebase deploy
+# Deploy to Vercel
+vercel --prod
 ```
+
+Your app will be live at your Vercel domain.
 
 ## 🆘 Troubleshooting
 
 ### Common Issues:
 
-**1. "Firebase project not found"**
-- Run `firebase projects:list` to see available projects
-- Run `firebase use your-project-id`
+**1. "Firebase Storage connection failed"**
+- Check your Firebase Storage configuration
+- Verify storage bucket exists and is accessible
+- Ensure storage rules allow your operations
 
-**2. "Permission denied"**
-- Check your Firestore security rules
-- Ensure user is authenticated
+**2. "Storage rules validation failed"**
+- Check storage.rules syntax
+- Ensure rules account for Supabase authentication tokens
+- Test rules in Firebase Console
 
 **3. "Module not found"**
-- Run `npm install` in sparks directory
-- Check if all Firebase packages are installed
+- Check if Firebase Storage packages are installed:
+  ```bash
+  npm install firebase
+  ```
 
-**4. "Invalid API key"**
-- Double-check your `.env` file values
-- Ensure no extra spaces or quotes
+**4. "Authentication token invalid"**
+- This is expected - we use Supabase auth, not Firebase auth
+- Ensure you're using custom tokens for Firebase Storage access
 
 ### Get Help:
 
@@ -239,27 +292,44 @@ firebase --help
 # Check project status
 firebase projects:list
 
-# Check current project
-firebase use
+# Test storage connection
+node test-firebase-storage.js
 ```
 
-## ✅ Success Checklist
+## ✅ Final Checklist - Hybrid Architecture
 
+**Firebase Components (Storage & Functions only):**
 - [ ] Firebase CLI installed and logged in
 - [ ] Firebase project created
-- [ ] Web app added to project
-- [ ] Environment variables updated
+- [ ] Web app registered in Firebase
+- [ ] Environment variables added to `.env`
 - [ ] Firebase initialized in project
-- [ ] Authentication enabled
-- [ ] Firestore database created
-- [ ] Storage enabled
-- [ ] Development server running
-- [ ] Firebase connection tested
-- [ ] App deployed (optional)
+- [ ] ❌ Authentication DISABLED (using Supabase)
+- [ ] ❌ Firestore DISABLED (using Supabase PostgreSQL)
+- [ ] ✅ Storage enabled and configured
+- [ ] ✅ Storage security rules updated for Supabase auth
+- [ ] Firebase Storage connection tested
 
-## 🎉 You're Done!
+**Integration with Other Services:**
+- [ ] Supabase setup completed (see `SUPABASE_SETUP_GUIDE.md`)
+- [ ] Vercel deployment configured (see `VERCEL_DEPLOYMENT_GUIDE.md`)
+- [ ] Hybrid architecture documented (see `HYBRID_ARCHITECTURE.md`)
 
-Once you complete these steps, your Firebase setup will be complete and working!
+## 🎉 Firebase Setup Complete!
+
+**Firebase is now configured as part of your hybrid architecture for:**
+- 📁 File storage and media uploads
+- ⚙️ Cloud functions (when needed)
+- 📊 Analytics and monitoring
+- 📱 Push notifications
+
+### Next Steps:
+1. **Complete Supabase setup** for database and authentication
+2. **Configure Vercel deployment** for hosting
+3. **Test the full hybrid integration**
+4. **Start building your app features**
+
+**Architecture Status:** Firebase ✅ | Supabase ⏳ | Vercel ⏳
 
 **Need help?** 
 - Check the console for error messages
